@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/sign_in.css">
+</head>
+<body>
+<div class="signin">
+  <div class="form">
+    <form id="signup" class="signup-form" action="{% url 'signup' %}" method="post" >
+        {% csrf_token %}
+        <p class="error">{{ errors.as_text }}</p>
+        <span class="input-field">
+            <input class="green-text text-accent-3" type="text" placeholder="first name" name="first_name"/>
+        </span>
+        <span class="input-field">
+            <input class="green-text text-accent-3" type="text" placeholder="last name" name="last_name"/>
+        </span>
+        <span class="input-field">
+            <input class="green-text text-accent-3" type="text" placeholder="username@pymail.com" name="username"/>
+        </span>
+        <span class="input-field">
+            <input class="green-text text-accent-3" type="password" placeholder="password" name="password1" id="password1"/>
+        </span>
+        <span class="input-field">
+            <input class="green-text text-accent-3" type="password" placeholder="confirm password" name="password2" id="password2" onkeyup="checkPass(); return false;"/>
+        </span>
+        <p id="confirmMessage" class="confirmMessage"></p>
+        <button type="submit" class="green accent-3">sign up</button>
+        <p class="message">Already registered? <a href="#">Sign In</a></p>
+    </form>
+    <form id="signin"class="signin-form" action="{% url 'signin' %}" method="post">
+        {% csrf_token %}
+        {% if error_message != None %}
+        <p class="error"> {{ error_message }}</p>
+        {% endif %}
+    <span class="input-field">
+      <input class="green-text text-accent-3" type="text" placeholder="username" name="username" required/>
+    </span>
+    <span class="input-field">
+      <input class="green-text text-accent-3" type="password" placeholder="password" name="password" required/>
+    </span>
+      <button type="submit" class="green accent-3">sign in</button>
+      <p class="message">Not registered? <a href="#">Create an account</a></p>
+    </form>
+  </div>
+</div>
+<script src="/static/sign_in.js"></script>
+<script src="/static/compare_pass.js"></script>
+<script src="/static/change_side.js"></script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pymail</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/mail.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+<div class="trans"></div>
+<div class="row">
+    <div class="col s3">
+        <div class="container center-align">
+            <i class="large material-icons">account_circle</i>
+            <h6 class="teal-text text-darken-3"> Hello, {{ user.first_name }}</h6>
+            <a class="waves-effect waves-light btn green accent-3" href="/signout"><i class="material-icons left">loop</i>sign out</a>
+        </div>
+            <div class="nav-wrapper">
+                <form>
+                    <div class="input-field">
+                        <input id="search" class="green-text text-accent-4" type="search" required>
+                        <label for="search" ><i class="material-icons green-text text-accent-4 icon">search</i></label>
+                    </div>
+                </form>
+            </div>
+         <div class="right-align">
+             <a href="/new" class="btn-floating btn-large green accent-3">
+                 <i class="large material-icons">mode_edit</i>
+             </a>
+         </div>
+        <div class="collection">
+            <a href="/inbox" class="collection-item green-text text-accent-4"><i class="tiny material-icons">call_received</i><span class="new badge green accent-4">4</span>Inbox</a>
+            <a href="/sent" class="collection-item green-text text-accent-4"><i class="tiny material-icons">call_made</i><span class="badge">1</span>Sent</a>
+            <a href="/important" class="collection-item green-text text-accent-4"><i class="tiny material-icons">star</i><span class="badge">1</span>Important</a>
+            <a href="/trash" class="collection-item green-text text-accent-4"><i class="tiny material-icons">delete</i><span class="badge">14</span>Trash</a>
+            <a href="/spam" class="collection-item green-text text-accent-4"><i class="tiny material-icons">block</i><span class="badge">14</span>Spam</a>
+        </div>
+         <div class="divider blue-grey darken-2"></div>
+
+    </div>
+    <div class="col s9">
+        {% block content %}
+        {% endblock %}
+    </div>
+</div>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+<script src="/static/select_all.js"></script>
+</body>
+</html>

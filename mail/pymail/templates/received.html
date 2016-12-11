@@ -1,0 +1,53 @@
+{% extends 'mail.html' %}
+
+{% block content %}
+    <br>
+    <br>
+    <br>
+    <form>
+    <div class="new-letter col s10 offset-s1">
+    <div class="row">
+    <div class="col s10 offset-s1">
+        <div class="input-field">
+            <i class="material-icons prefix">mail</i>
+            <input class="green-text text-accent-3" disabled value="I am not editable" type="email" multiple>
+            <label for="email">From</label>
+        </div>
+        <div class="input-field">
+            <i class="material-icons prefix">mail</i>
+            <input class="green-text text-accent-3" disabled value="I am not editable" type="email" multiple>
+            <label for="email">To</label>
+        </div>
+        <div class="input-field">
+            <i class="material-icons prefix">subject</i>
+            <input class="green-text text-accent-3" disabled value="I am not editable" id="subject" type="text"">
+            <label for="subject">Subject</label>
+        </div>
+        <span class="input-field">
+            <i class="material-icons prefix">date_range</i>
+            <input class="green-text text-accent-3" id="date" type="datetime" disabled value="{{ dt }}">
+            <label for="date"></label>
+        </span>
+    </div>
+        <div class="col s9 offset-s2">
+        <div class="input-field">
+            <i class="material-icons prefix">mode_edit</i>
+            <textarea class="green-text text-accent-3 materialize-textarea" disabled id="icon_prefix2">I am not editable</textarea>
+            <label for="icon_prefix2">Message</label>
+        </div>
+            <div class="fixed-action-btn N/A transparent">
+    <a class="btn-floating btn-large green accent-3">
+      <i class="large material-icons">menu</i>
+    </a>
+    <ul>
+        <li><a class="btn-floating red"><i class="material-icons">block</i></a></li>
+        <li><a class="btn-floating yellow"><i class="material-icons">delete</i></a></li>
+        <li><a class="btn-floating purple"><i class="material-icons">star</i></a></li>
+        <li><a class="btn-floating indigo" id="select_all"><i class="material-icons">reply</i></a></li>
+    </ul>
+            </div>
+            </div>
+    </div>
+    </div>
+    </form>
+{% endblock %}

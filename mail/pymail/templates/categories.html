@@ -1,0 +1,36 @@
+{% extends 'mail.html' %}
+
+{% block content %}
+    <form>
+    <div class="row">
+    <ul class="pagination">
+    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+    <li class="active green accent-3"><a href="#!">1</a></li>
+    <li class="waves-effect"><a href="#!">2</a></li>
+    <li class="waves-effect"><a href="#!">3</a></li>
+    <li class="waves-effect"><a href="#!">4</a></li>
+    <li class="waves-effect"><a href="#!">5</a></li>
+    <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+  </ul>
+    <div class="fixed-action-btn horizontal">
+    <a class="btn-floating btn-large green accent-3">
+      <i class="large material-icons">menu</i>
+    </a>
+    <ul>
+        {% block buttons %}
+        {% endblock buttons %}
+    </ul>
+  </div>
+    </div>
+    <div class="row">
+    <div class="collection">
+        <a href="#!" class="collection-item green-text text-accent-4 N/A transparent letter">Alvin <span class="check">
+            <input type="checkbox" class="checkbox filled-in" id="test5"/>
+      <label for="test5"></label></span></a>
+        <a href="#!" class="collection-item green-text text-accent-4 N/A transparent letter">Alvin <span class="check">
+            <input type="checkbox" class="checkbox filled-in" id="test6" />
+      <label for="test6"></label></span></a>
+      <div/>
+    </div>
+    </form>
+{% endblock %}
