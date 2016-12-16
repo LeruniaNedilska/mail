@@ -1,3 +1,23 @@
-from django.db import models
+from bson.objectid import ObjectId
 
-# Create your models here.
+
+def message(from_user, to_users, subject, date, text, category, important=False, read=False):
+    return {"_id": ObjectId(),
+            "from": from_user,
+            "to": to_users,
+            "subject": subject,
+            "date": date,
+            "text": text,
+            "important": important,
+            "read": read,
+            "type": category
+            }
+
+
+def user_mail(username):
+    return {"username": username,
+            "inbox": [],
+            "sent": [],
+            "trash": [],
+            "spam": []
+            }

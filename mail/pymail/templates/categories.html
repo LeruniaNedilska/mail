@@ -1,17 +1,33 @@
 {% extends 'mail.html' %}
+{% load filters %}
 
 {% block content %}
-    <form>
+    <form name="submitme" method="post" action="{% url 'handler' %}">
+    {% csrf_token %}
+    <input type="hidden" name="action">
+    <input type="hidden" name="previous">
     <div class="row">
-    <ul class="pagination">
-    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-    <li class="active green accent-3"><a href="#!">1</a></li>
-    <li class="waves-effect"><a href="#!">2</a></li>
-    <li class="waves-effect"><a href="#!">3</a></li>
-    <li class="waves-effect"><a href="#!">4</a></li>
-    <li class="waves-effect"><a href="#!">5</a></li>
-    <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
-  </ul>
+<div class="pagination pymail">
+    <span class="step-links">
+    {% if messages %}
+        {% if messages.has_previous %}
+            <a href="?page={{ messages.previous_page_number }}"><i class="material-icons green-text text-accent-3">chevron_left</i></a>
+            {% else %}
+            <a class="disabled"><i class="material-icons grey-text">chevron_left</i></a>
+        {% endif %}
+        <span class="current green-text text-accent-4">
+            {{ messages.number }} of {{ messages.paginator.num_pages }}.
+        </span>
+        {% if messages.has_next %}
+            <a href="?page={{ messages.next_page_number }}"><i class="material-icons green-text text-accent-3">chevron_right</i></a>
+            {% else %}
+            <a class="disabled"><i class="material-icons grey-text">chevron_right</i></a>
+        {% endif %}
+        {% else %}
+        <p class="green-text text-accent-4">This folder is empty.</p>
+    {% endif %}
+    </span>
+</div>
     <div class="fixed-action-btn horizontal">
     <a class="btn-floating btn-large green accent-3">
       <i class="large material-icons">menu</i>
@@ -23,14 +39,26 @@
   </div>
     </div>
     <div class="row">
-    <div class="collection">
-        <a href="#!" class="collection-item green-text text-accent-4 N/A transparent letter">Alvin <span class="check">
-            <input type="checkbox" class="checkbox filled-in" id="test5"/>
-      <label for="test5"></label></span></a>
-        <a href="#!" class="collection-item green-text text-accent-4 N/A transparent letter">Alvin <span class="check">
-            <input type="checkbox" class="checkbox filled-in" id="test6" />
-      <label for="test6"></label></span></a>
-      <div/>
+    <div class="collection letters">
+        {% for m in messages %}
+            {% if m.read %}
+            <a href="#!" class="collection-item green-text text-accent-4 N/A transparent letter">
+            {% else %}
+            <a href="#!" class="collection-item green-text text-accent-4 N/A transparent new-letter">
+            {% endif %}
+                {% if m.type == 'inbox' %}
+                    <b> From: </b>
+                    {{ m.from }}@pymail.com
+                {% elif m.type == 'sent' %}
+                    <b> To: </b>
+                     {% for i in m.to %}
+                         {{ i }}@pymail.com &nbsp
+                     {% endfor %}
+                {% endif %}<b>&nbsp &nbsp Subject: </b>{{ m.subject }}  <span class="check-date">{{ m.date }}</span><span class="check">
+            <input name="mail_list" value="{{ m|private:"_id" }}" type="checkbox" class="checkbox filled-in" id="{{ m|private:"_id" }}"/>
+                    <label for="{{ m|private:"_id" }}"></label></span></a>
+        {% endfor %}
+        </div>
     </div>
     </form>
 {% endblock %}

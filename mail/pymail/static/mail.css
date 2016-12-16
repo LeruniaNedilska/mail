@@ -34,6 +34,10 @@ body {
     position: absolute;
     right: 0;
 }
+.check-date{
+    position: absolute;
+    right: 5%;
+}
 .checkbox[type="checkbox"].filled-in:checked + label:after{
      border: 2px solid #00e676;
      background-color: #00e676;
@@ -67,10 +71,22 @@ body {
      color: #00e676;
 }
 .new-letter {
-    background-image: url(/static/new.png);
+    background-image: url(/static/new_mail.png);
 }
 .fixed-action-btn.transparent {
     position: absolute;
     right: 8%;
     bottom: 25%;
+}
+.pagination {
+    position: absolute;
+    top: 3%;
+}
+.pymail {
+    position: relative;
+    top: 15px;
+}
+.letters {
+    position: relative;
+    top: 20px;
 }

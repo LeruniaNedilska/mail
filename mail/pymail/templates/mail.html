@@ -1,3 +1,4 @@
+{% load filters %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,11 +31,11 @@
              </a>
          </div>
         <div class="collection">
-            <a href="/inbox" class="collection-item green-text text-accent-4"><i class="tiny material-icons">call_received</i><span class="new badge green accent-4">4</span>Inbox</a>
-            <a href="/sent" class="collection-item green-text text-accent-4"><i class="tiny material-icons">call_made</i><span class="badge">1</span>Sent</a>
-            <a href="/important" class="collection-item green-text text-accent-4"><i class="tiny material-icons">star</i><span class="badge">1</span>Important</a>
-            <a href="/trash" class="collection-item green-text text-accent-4"><i class="tiny material-icons">delete</i><span class="badge">14</span>Trash</a>
-            <a href="/spam" class="collection-item green-text text-accent-4"><i class="tiny material-icons">block</i><span class="badge">14</span>Spam</a>
+            <a href="/inbox" class="collection-item green-text text-accent-4"><i class="tiny material-icons">call_received</i><span class="new badge green accent-4">{{ new }}</span>Inbox</a>
+            <a href="/sent" class="collection-item green-text text-accent-4"><i class="tiny material-icons">call_made</i><span class="badge">{{ sent }}</span>Sent</a>
+            <a href="/important" class="collection-item green-text text-accent-4"><i class="tiny material-icons">star</i><span class="badge">{{ important }}</span>Important</a>
+            <a href="/trash" class="collection-item green-text text-accent-4"><i class="tiny material-icons">delete</i><span class="badge">{{ trash }}</span>Trash</a>
+            <a href="/spam" class="collection-item green-text text-accent-4"><i class="tiny material-icons">block</i><span class="badge">{{ spam }}</span>Spam</a>
         </div>
          <div class="divider blue-grey darken-2"></div>
 
@@ -47,5 +48,6 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
 <script src="/static/select_all.js"></script>
+<script src="/static/submit_form.js"></script>
 </body>
 </html>
