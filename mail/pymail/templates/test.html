@@ -1,0 +1,71 @@
+{% extends 'mail.html' %}
+{% load filters %}
+
+{% block content %}
+    <form name="submitme" method="post" action="{% url 'handler' %}">
+    {% csrf_token %}
+        <input type="hidden" name="action" value="delete_users">
+    <div class="row">
+<div class="pagination pymail">
+    <span class="step-links">
+    {% if results %}
+        {% if results.has_previous %}
+            <a href="?page={{ results.previous_page_number }}"><i class="material-icons green-text text-accent-3">chevron_left</i></a>
+            {% else %}
+            <a class="disabled"><i class="material-icons grey-text">chevron_left</i></a>
+        {% endif %}
+        <span class="current green-text text-accent-4">
+            {{ results.number }} of {{ results.paginator.num_pages }}.
+        </span>
+        {% if results.has_next %}
+            <a href="?page={{ results.next_page_number }}"><i class="material-icons green-text text-accent-3">chevron_right</i></a>
+            {% else %}
+            <a class="disabled"><i class="material-icons grey-text">chevron_right</i></a>
+        {% endif %}
+    {% endif %}
+    </span>
+</div>
+    <div class="fixed-action-btn horizontal">
+    <a class="btn-floating btn-large green accent-3">
+      <i class="large material-icons">menu</i>
+    </a>
+    <ul>
+    <li><a class="btn-floating yellow" onclick="$(this).closest('form').submit()"><i class="material-icons">delete_forever</i></a></li>
+    <li><a class="btn-floating light-green accent-3" id="select_all"><i class="material-icons">check_box</i></a></li>
+    <li><a class="btn-floating indigo" id="unselect_all"><i class="material-icons">check_box_outline_blank</i></a></li>
+    </ul>
+  </div>
+    </div>
+    <div class="row">
+          <table class="highlight letters">
+        <thead>
+          <tr>
+              <th data-field="username" class="green-text text-accent-4">Username</th>
+              <th data-field="Inbox" class="green-text text-accent-4">Received</th>
+              <th data-field="Sent" class="green-text text-accent-4">Sent</th>
+              <th data-field="Spam" class="green-text text-accent-4">Spamed</th>
+          </tr>
+        </thead>
+
+        <tbody>
+        {% for key, value in context.items %}
+          <tr>
+            <td class="green-text text-accent-4">{{ key }}</td>
+            <td class="green-text text-accent-4">{{ value.inbox }}</td>
+            <td class="green-text text-accent-4">{{ value.sent }}</td>
+              <td class="green-text text-accent-4">{{ value.spam }}</td>
+          <td>
+              {% if value.spam %}
+                  {% if key != 'admin' %}
+              <span class="check-admin">
+            <input name="mail_list" value="{{ key }}" type="checkbox" class="checkbox filled-in" id="{{ key }}"/>
+                    <label for="{{ key }}"></label></span>{% endif %} {% endif %}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    </form>
+{% endblock %}
+</body>
+</html>

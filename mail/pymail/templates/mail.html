@@ -14,15 +14,23 @@
     <div class="col s3">
         <div class="container center-align">
             <i class="large material-icons">account_circle</i>
+            {% if user.is_superuser %}
+            <h6 class="teal-text text-darken-3"> Hello, admin</h6>
+            {% else %}
             <h6 class="teal-text text-darken-3"> Hello, {{ user.first_name }}</h6>
+            {% endif %}
             <a class="waves-effect waves-light btn green accent-3" href="/signout"><i class="material-icons left">loop</i>sign out</a>
         </div>
             <div class="nav-wrapper">
-                <form>
+                <form method="post" action="{%  url 'search' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="type" value="{{ category }}">
+                    {% if category != 'search' %}
                     <div class="input-field">
-                        <input id="search" class="green-text text-accent-4" type="search" required>
-                        <label for="search" ><i class="material-icons green-text text-accent-4 icon">search</i></label>
+                        <input id="search" name="phrase" class="green-text text-accent-4" type="search" required>
+                        <label for="search" class="green-text text-accent-4">Search in {{ category }}</label>
                     </div>
+                    {% endif %}
                 </form>
             </div>
          <div class="right-align">
@@ -43,6 +51,20 @@
     <div class="col s9">
         {% block content %}
         {% endblock %}
+    </div>
+</div>
+<div class="row">
+    <div class="col s3">
+        <div class="container center-align">
+            {% if user.is_superuser %}
+                <div class="collection">
+            <a href="{% url 'stats' 1 %}" class="collection-item deep-purple-text"><i class="tiny material-icons">history</i>Stats for day</a>
+            <a href="{% url 'stats' 7 %}" class="collection-item deep-purple-text"><i class="tiny material-icons">history</i>Stats for 7 days</a>
+            <a href="{% url 'stats' 30 %}" class="collection-item deep-purple-text"><i class="tiny material-icons">history</i>Stats for 30 days</a>
+            <a href="{% url 'memory' %}" class="collection-item deep-purple-text"><i class="tiny material-icons">memory</i>Memory usage</a>
+        </div>
+            {% endif %}
+        </div>
     </div>
 </div>
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>

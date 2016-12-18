@@ -1,0 +1,6 @@
+{% extends 'received.html' %}
+
+{% block buttons %}
+    <li><a class="btn-floating yellow" onclick="submitForm('delete', '{{ category }}')"><i class="material-icons">delete</i></a></li>
+    <li><a class="btn-floating purple" onclick="submitForm('important', '{{ category }}')"><i class="material-icons">star</i></a></li>
+{% endblock buttons %}

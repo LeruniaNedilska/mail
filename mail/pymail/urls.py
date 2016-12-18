@@ -13,6 +13,10 @@ urlpatterns = [
     url(r'^trash$', views.template, name='trash'),
     url(r'^spam$', views.template, name='spam'),
     url(r'^new$', views.new, name='new'),
-    url(r'^received$', views.received, name='received'),
-    url(r'^handler$', views.handler, name='handler'),
+    url(r'^reply$', views.handler, name='handler'),
+    url(r'^send$', views.send_new_message, name='send_new'),
+    url(r'^(?P<category>[a-z]+)/(?P<message_id>[^/]+)/$', views.message, name='see_message'),
+    url(r'^search$', views.template, name='search'),
+    url(r'^stat/(?P<days>[0-9]+)$', views.stats, name='stats'),
+    url(r'^memory$', views.memory_usage, name='memory'),
 ]

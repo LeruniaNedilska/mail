@@ -34,6 +34,11 @@ body {
     position: absolute;
     right: 0;
 }
+.check-admin {
+    position: relative;
+    right: -25px;
+    top: 7px;
+}
 .check-date{
     position: absolute;
     right: 5%;

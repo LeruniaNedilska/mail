@@ -15,9 +15,13 @@ def message(from_user, to_users, subject, date, text, category, important=False,
 
 
 def user_mail(username):
-    return {"username": username,
+    return {"_id": username,
             "inbox": [],
             "sent": [],
             "trash": [],
-            "spam": []
+            "spam": [],
+            "inbox_count": 0,
+            "sent_count": 0,
+            "trash_count": 0,
+            "spam_count": 0
             }

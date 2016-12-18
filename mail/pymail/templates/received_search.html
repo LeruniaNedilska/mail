@@ -4,12 +4,6 @@
     <br>
     <br>
     <br>
-    <form name="submitme" method="post" action="{% url 'handler' %}">
-    {% csrf_token %}
-    <input type="hidden" name="action">
-    <input type="hidden" name="previous">
-    <input type="hidden" name="mail_list" value="{{ id }}">
-    <input type="hidden" name="noreturn" value="yes">
     <div class="letter col s10 offset-s1">
     <div class="row">
     <div class="col s10 offset-s1">
@@ -40,17 +34,7 @@
             <textarea class="green-text text-accent-4 materialize-textarea" disabled id="icon_prefix2">{{ text }}</textarea>
             <label for="icon_prefix2">Message</label>
         </div>
-            <div class="fixed-action-btn N/A transparent">
-    <a class="btn-floating btn-large green accent-3">
-      <i class="large material-icons">menu</i>
-    </a>
-    <ul>
-        {% block buttons %}
-        {% endblock buttons %}
-    </ul>
-            </div>
-            </div>
     </div>
     </div>
-    </form>
+    </div>
 {% endblock %}
